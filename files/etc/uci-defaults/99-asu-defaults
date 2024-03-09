@@ -1,0 +1,25 @@
+[ "$(uci -q get network.lan.ipaddr)" = "192.168.10.1" ] && exit 0
+
+exec >/tmp/setup.log 2>&1
+
+#root密码
+(echo "ROOT_PASSWD"; sleep 1; echo "ROOT_PASSWD") | passwd > /dev/null
+
+#网络设置
+uci set network.lan.ipaddr="192.168.10.1"
+uci set network.wan.proto=pppoe
+uci set network.wan.username="PPPOE_USER"
+uci set network.wan.password="PPPOE_PASSWD"
+uci set network.wan.device='eth1'
+uci del network.cfg030f15.ports
+uci add_list network.cfg030f15.ports='eth0'
+uci commit network
+
+#dhcp设置
+uci add dhcp host # =cfg05fe63
+uci add_list dhcp.@host[-1].mac='7C:4D:8F:6E:E7:35'
+uci set dhcp.@host[-1].ip='192.168.10.100'
+uci set dhcp.@host[-1].leasetime='infinite'
+uci commit dhcp
+
+echo "All done!"
