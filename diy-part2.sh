@@ -14,11 +14,7 @@
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
 
 # Modify default theme
-#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
-
-sed -i 's/ROOT_PASSWD/$ROOT_PASSWD/g' files/etc/uci-defaults/99-asu-defaults
-sed -i 's/PPPOE_USER/$PPPOE_USER/g' files/etc/uci-defaults/99-asu-defaults
-sed -i 's/PPPOE_PASSWD/$PPPOE_PASSWD/g' files/etc/uci-defaults/99-asu-defaults
