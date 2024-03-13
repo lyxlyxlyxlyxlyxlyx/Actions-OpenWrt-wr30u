@@ -5,8 +5,11 @@ exec >/tmp/setup.log 2>&1
 #网络设置
 uci set network.lan.ipaddr="192.168.10.1"
 uci set network.wan.proto=pppoe
-uci set network.wan.username="123"
-uci set network.wan.password="456"
+uci set network.wan.username="114514"
+uci set network.wan.password="1919810"
+uci set network.wan.device='eth1'
+uci del network.cfg030f15.ports
+uci add_list network.cfg030f15.ports='eth0'
 uci commit network
 
 #dhcp设置
@@ -15,8 +18,5 @@ uci add_list dhcp.@host[-1].mac='7C:4D:8F:6E:E7:35'
 uci set dhcp.@host[-1].ip='192.168.10.100'
 uci set dhcp.@host[-1].leasetime='infinite'
 uci commit dhcp
-
-#神秘代码
-echo 0xDEADBEEF > /etc/config/google_fu_mode
 
 echo "All done!"
