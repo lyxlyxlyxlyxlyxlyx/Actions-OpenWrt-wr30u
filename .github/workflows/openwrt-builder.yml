@@ -77,10 +77,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-      env:
-        ROOT_PASSWD: ${{ secrets.ROOT_PASSWD }}
-        PPPOE_USER: ${{ secrets.PPPOE_USER }}
-        PPPOE_PASSWD: ${{ secrets.PPPOE_PASSWD }}
 
     - name: Download package
       id: package
